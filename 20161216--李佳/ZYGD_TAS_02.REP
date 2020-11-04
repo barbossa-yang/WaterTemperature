@@ -1,0 +1,285 @@
+Protel Advanced Schematic Back-Annotation Report ZYGD_TAS_02.REP 12:59:34 4-Jun-2012 
+R5                             => R1
+R21                            => R2
+XJ2                            => XJ1
+XP4                            => XP1
+R6                             => R3
+XJ1                            => XJ2
+C37                            Failed To Find
+R22                            => R4
+R7                             => R5
+R23                            => R6
+R37                            Failed To Find
+R35                            Failed To Find
+R33                            Failed To Find
+R34                            Failed To Find
+R31                            Failed To Find
+R32                            Failed To Find
+R20                            => R13
+R36                            Failed To Find
+R38                            Failed To Find
+D6                             => D1
+D5                             => D2
+R8                             => R16
+R24                            => R17
+R9                             => R18
+C71                            => C2
+C70                            => C3
+C72                            => C4
+C17                            => C5
+C16                            => C6
+R25                            => R19
+R10                            => R20
+R26                            => R21
+D22                            => D3
+C73                            => C7
+R11                            => R22
+R27                            => R23
+C74                            => C8
+R93                            => R24
+R94                            Failed To Find
+C58                            => C9
+R14                            => R26
+R28                            Failed To Find
+R62                            => R28
+R68                            => R29
+R80                            => R30
+VE2                            => VE1
+C27                            => C10
+C28                            => C11
+GS3                            => GS1
+D15                            => D4
+VE8                            => VE2
+C29                            => C12
+R54                            => R31
+XJ6                            => XJ3
+R74                            => R32
+C47                            => C13
+C24                            => C14
+D11                            => D5
+XJ7                            => XJ4
+R56                            => R33
+C63                            => C15
+C64                            => C16
+C52                            => C17
+R86                            => R34
+R73                            => R35
+C46                            => C18
+R55                            => R36
+R67                            => R37
+R85                            => R38
+C20                            => C19
+C23                            => C20
+XJ4                            => XJ6
+C18                            => C21
+VE7                            => VE3
+C44                            => C22
+R53                            => R39
+D10                            => D6
+XJ3                            => XJ7
+R49                            => R40
+R50                            => R41
+D20                            => D7
+VE11                           => VE4
+C19                            => C23
+R52                            => R42
+R45                            => R43
+C45                            => C24
+C62                            => C25
+R77                            => R45
+C57                            => C26
+R60                            => R46
+C68                            => C27
+R72                            => R47
+R90                            => R48
+R66                            => R49
+R84                            => R50
+C26                            => C28
+VE6                            => VE5
+C30                            => C29
+D18                            => D10
+VE13                           => VE6
+R92                            => R51
+C48                            => C30
+R47                            => R52
+R48                            => R53
+R46                            => R54
+R17                            => R55
+D12                            => D11
+R51                            => R56
+R79                            => R57
+C55                            => C31
+D21                            => D12
+C49                            => C32
+D3                             Failed To Find
+C60                            => C33
+R61                            => R58
+C69                            => C34
+R91                            => R59
+R64                            => R60
+R70                            => R61
+R82                            => R62
+VE4                            => VE7
+D17                            => D15
+VE10                           => VE8
+C25                            => C35
+R76                            => R63
+C54                            => C36
+R59                            => R64
+C61                            => C37
+C67                            => C38
+R89                            => R65
+D7                             => D16
+R71                            => R66
+XP19                           => XP2
+R4                             => R67
+XP1                            => XP3
+C21                            => C39
+R65                            => R68
+R83                            => R69
+VE5                            => VE9
+C51                            => C40
+C7                             Failed To Find
+C36                            Failed To Find
+C35                            Failed To Find
+D13                            => D17
+D19                            => D18
+VE12                           => VE10
+C8                             Failed To Find
+C22                            => C45
+C50                            => C46
+R78                            => R70
+C56                            => C47
+G3                             => G1
+G1                             Failed To Find
+G2                             => G3
+R58                            => R71
+C59                            => C48
+C66                            => C49
+R88                            => R72
+C6                             Failed To Find
+R63                            => R73
+R69                            => R74
+R81                            => R75
+R1                             => R76
+VE3                            => VE11
+C34                            Failed To Find
+D1                             Failed To Find
+D16                            => D20
+VE9                            => VE12
+GS1                            Failed To Find
+D2                             Failed To Find
+R75                            => R77
+C32                            Failed To Find
+R57                            => R78
+C65                            => C53
+C38                            Failed To Find
+R87                            => R79
+C53                            => C55
+C14                            Failed To Find
+C1                             => C57
+R40                            Failed To Find
+R41                            Failed To Find
+C39                            Failed To Find
+R42                            Failed To Find
+V43                            Failed To Find
+R43                            Failed To Find
+C31                            Failed To Find
+R18                            => R84
+R3                             => R85
+R19                            => R86
+R2                             => R87
+D4                             Failed To Find
+GS2                            => GS3
+VE1                            Failed To Find
+C42                            => C60
+C41                            => C61
+V44                            Failed To Find
+C12                            Failed To Find
+R13                            => R88
+R12                            => R89
+C15                            Failed To Find
+C33                            Failed To Find
+V45                            => V3
+C13                            Failed To Find
+R16                            => R90
+R15                            => R91
+C43                            => C66
+C40                            Failed To Find
+C75                            => C68
+R30                            Failed To Find
+R29                            Failed To Find
+V7                             => V4
+XP3                            => XP4
+V6                             => V5
+XP28                           => XP5
+V5                             => V6
+V4                             => V7
+V3                             => V8
+C2                             Failed To Find
+V2                             => V9
+V1                             => V10
+V46                            Failed To Find
+V13                            => V12
+XP12                           => XP6
+XP6                            Failed To Find
+V8                             => V13
+V12                            => V14
+V31                            => V15
+XP10                           => XP8
+V11                            => V16
+XP21                           => XP9
+V30                            => V17
+XP11                           => XP10
+V10                            => V18
+V24                            => V19
+XP23                           => XP11
+V41                            => V20
+XP9                            => XP12
+V40                            => V21
+XP27                           => XP13
+XP15                           => XP14
+V39                            => V24
+XP16                           => XP15
+V38                            => V26
+C10                            Failed To Find
+C11                            Failed To Find
+XP26                           => XP16
+V29                            => V27
+C9                             Failed To Find
+C4                             Failed To Find
+C3                             Failed To Find
+C5                             Failed To Find
+XP18                           => XP17
+V35                            => V29
+V33                            => V30
+XP24                           => XP18
+V27                            => V31
+XP17                           => XP19
+V26                            => V32
+V37                            => V33
+XP25                           => XP20
+V14                            => V34
+XP13                           => XP21
+V36                            => V35
+V17                            => V36
+V34                            => V37
+V16                            => V38
+XP14                           => XP23
+V32                            => V39
+V15                            => V40
+XP20                           => XP24
+HL2                            => HL1
+HL3                            => HL2
+HL4                            => HL3
+HL1                            => HL4
+V19                            => V41
+XP5                            Failed To Find
+V21                            => V42
+XP29                           => XP26
+V20                            => V43
+XP7                            => XP27
+XP8                            Failed To Find
+V18                            => V44
+XP2                            Failed To Find
+V9                             => V45

@@ -1,0 +1,23 @@
+Protel Design System Design Rule Check
+PCB File : Documents\ZYGD_TAS.PCB
+Date     : 21-Feb-2013
+Time     : 17:38:18
+
+Processing Rule : Hole Size Constraint (Min=1mil) (Max=1000mil) (On the board )
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=5mil) (Max=100mil) (Prefered=12mil) (On the board )
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=7mil) (On the board ),(On the board )
+Rule Violations :0
+
+Processing Rule : Broken-Net Constraint ( (On the board ) )
+Rule Violations :0
+
+Processing Rule : Short-Circuit Constraint (Allowed=Not Allowed) (On the board ),(On the board )
+Rule Violations :0
+
+
+Violations Detected : 0
+Time Elapsed        : 00:00:10
