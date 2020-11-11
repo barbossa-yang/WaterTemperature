@@ -13,7 +13,7 @@
 *
 *********************************************************************************************************
 */
-
+#pragma once
 #ifndef _BSP_H_
 #define _BSP_H
 
@@ -52,6 +52,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include <ctype.h>
 #include <time.h>
@@ -60,10 +61,12 @@
 
 #define Filter_Times 48
 
-typedef enum {FALSE = 0, TRUE = !FALSE} bool;
+//typedef enum {FALSE = 0, TRUE = !FALSE} bool;
 
-#define true   		TRUE
-#define false  		FALSE
+//#define true   		TRUE
+//#define false  		FALSE
+#define FALSE       0
+#define TRUE        1
 	
 #define IWDG_BIT_0	 (1 << 0)
 #define IWDG_BIT_1	 (1 << 1)
@@ -135,21 +138,6 @@ typedef enum {FALSE = 0, TRUE = !FALSE} bool;
 
 #define SETUP_HIGH  390
 
-typedef struct
-{
-	uint16_t Year;				/* 日期 */
-	uint8_t  Month;
-	uint8_t  Day;
-	uint8_t  Hour;				/* 时 */
-	uint8_t  Minute;			/* 分 */
-	uint8_t  Second;			/* 秒 */
-
-} SYSTEM_TIME;
-
-extern SYSTEM_TIME g_tCurrent,g_tHost;
-
-extern u8 stop_wdg_flag;
-
 typedef __packed struct 
 { 	
 		char Manufaxturer[80];		//="Henan Zhong Yuan Opto Electronics Measurement & Control Technology Co.,Ltd";
@@ -180,8 +168,11 @@ typedef __packed struct
 
 }  CJQ_PZ_TYPE;
 
-extern  CJQ_PZ_TYPE cjq_pz,*cjq_pz_ptr;
+//CJQ_PZ_TYPE cjq_pz,*cjq_pz_ptr;
 
+//extern CJQ_PZ_TYPE cjq_pz,*cjq_pz_ptr;
+
+extern u8 stop_wdg_flag;
 
 /* 提供给其他C文件调用的函数 */
 

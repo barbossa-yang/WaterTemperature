@@ -18,6 +18,7 @@
 */
 
 #include "includes.h"		
+#include "bsp_sdi.h"
 
 /*
 **********************************************************************************************************
@@ -418,7 +419,21 @@ __task void AppTaskAtmos(void)
 */
 __task void AppTaskWaterTemp(void)
 {
-
+		RTC_ReadClock();
+		Sdi_12_Transmission("0I!",1, 1);
+		os_dly_wait(500);
+//		Sdi_12_Transmission("0R0!",1, 1);
+//		os_dly_wait(500);
+	
+	
+		Sdi_12_Transmission("0R0!",1, 1);
+//		if((g_tRTC.hour >= g_ndviTimeBegin)&&(g_tRTC.hour < g_ndviTimeEnd)&&
+//		(g_tRTC.second == 0)&&(g_tRTC.minute%g_ndviInterval == 0))
+//		{
+//				GetNdviOriginalData();
+//				IWDG_ReloadCounter();
+//		}
+		os_dly_wait(500);
 }
 
 
@@ -724,7 +739,7 @@ static void AppTaskCreate (void)
 											5,                         
 											&AppTaskAtmosStk,            
 											sizeof(AppTaskAtmosStk));  
-		//水温采集任务									
+		//温度链采集任务									
 	HandleTaskWaterTemp  = os_tsk_create_user(	AppTaskWaterTemp,                
 											6,                         
 											&AppTaskWaterTempStk,            

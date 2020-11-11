@@ -14,8 +14,9 @@
 *
 *********************************************************************************************************
 */
-
+#include "bsp_user_lib.h"
 #include "bsp.h"
+#include "bsp_sdi.h"
 
 volatile int timer0,timer1,timer2,ZYGD_Timer;
 
@@ -34,6 +35,17 @@ volatile float JZXX_NO[14],JZSX_NO[14],CYBHL_NO[14],CWBHL_NO[14],ZXBHL_NO[14],Al
 u8 read_gauge_flag = 0x00;
 
 extern u8 Cmd_Type;
+extern volatile bool start_bit_flag;
+
+u16  CountNum = 0;
+u16 CountValue[IT_COUNTER];
+
+u32 global_retry_timer = 0;
+u32 global_elapsed_timer = 0;
+u32 global_maximum_timer = 0;
+u8  global_break_timer = 0;
+u8  global_marking_timer = 0;
+u8  global_timeout_timer = 0;
 
 union char_or_float
 {
@@ -41,6 +53,20 @@ union char_or_float
   u8 B[4];
 } guionData;
 
+typedef struct
+{
+	uint16_t Year;				/* 日期 */
+	uint8_t  Month;
+	uint8_t  Day;
+	uint8_t  Hour;				/* 时 */
+	uint8_t  Minute;			/* 分 */
+	uint8_t  Second;			/* 秒 */
+
+} SYSTEM_TIME;
+
+SYSTEM_TIME g_tCurrent,g_tHost;
+
+CJQ_PZ_TYPE cjq_pz,*cjq_pz_ptr;
 
 // CRC 高位字节值表
 
@@ -547,6 +573,9 @@ uint32_t AsciiToUint32(char *pAscii)
 
 void EXTI9_5_IRQHandler(void)
 {
+	u16 IC7ReadValue1;
+	u8 CaptureLevel = 0;
+	
 	if (EXTI_GetITStatus(EXTI_Line6) != RESET)
 	{		
 		EXTI_ClearITPendingBit(EXTI_Line6);
@@ -557,6 +586,26 @@ void EXTI9_5_IRQHandler(void)
 		EXTI_ClearITPendingBit(EXTI_Line7);
 	}	
   
+	if(EXTI_GetITStatus(EXTI_Line5) != RESET)
+	{
+		IC7ReadValue1 = TIM_GetCounter(TIM7);
+
+		TIM_SetCounter(TIM7,0);
+
+		EXTI_ClearITPendingBit(EXTI_Line5);
+
+		CountValue[CountNum++] = IC7ReadValue1;
+
+		CaptureLevel = GPIO_ReadInputDataBit(GPIOE,GPIO_Pin_5) ;	
+
+		CountValue[CountNum++] = CaptureLevel;
+
+		if(CaptureLevel == 1)    
+	  {	
+			start_bit_flag = TRUE;
+		}
+	}
+	
 }
 
 /*******************************************************************************
@@ -615,6 +664,40 @@ void TIM3_IRQHandler(void)
 	if (TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET)
 	{	
 		TIM_ClearFlag(TIM3, TIM_FLAG_Update);	
+	}
+}
+
+/*******************************************************************************
+* Function Name  : TIM6_IRQHandler
+* Description    : This function handles TIM6 global interrupt request.
+* Input          : None
+* Output         : None
+* Return         : None
+*******************************************************************************/
+//void TIM1_UP_IRQHandler(void)
+//{
+//	if (TIM_GetITStatus(TIM1, TIM_IT_Update) != RESET)
+//	{
+//		global_retry_timer++;		
+// 		global_elapsed_timer++;		
+//		global_break_timer++;
+//		global_marking_timer++;		
+//		global_maximum_timer++;
+//		global_timeout_timer++; 
+//		TIM_ClearITPendingBit(TIM1, TIM_IT_Update);
+//	}
+//}
+void TIM6_IRQHandler(void)
+{
+	if (TIM_GetITStatus(TIM6, TIM_IT_Update) != RESET)
+	{
+		global_retry_timer++;		
+ 		global_elapsed_timer++;		
+		global_break_timer++;
+		global_marking_timer++;		
+		global_maximum_timer++;
+		global_timeout_timer++; 
+		TIM_ClearITPendingBit(TIM6, TIM_IT_Update);
 	}
 }
 
@@ -1267,9 +1350,6 @@ void Process_SENST_Command(uint8_t *_ucaBuf, uint16_t _usLen);
 void Process_Snapshot_Command(void);
 
 void Process_Reset_Command(void);
-
-
-SYSTEM_TIME g_tCurrent,g_tHost;
 
 static char strIn[40];
 

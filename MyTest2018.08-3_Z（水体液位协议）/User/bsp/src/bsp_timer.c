@@ -47,6 +47,17 @@ static void ConfigTimerNVIC(void)
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure);	
 
+//		NVIC_InitStructure.NVIC_IRQChannel = TIM1_UP_IRQn;	
+//    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2;
+//    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+//    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+//    NVIC_Init(&NVIC_InitStructure);	
+		NVIC_InitStructure.NVIC_IRQChannel = TIM6_IRQn;	
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure);	
+		
 	NVIC_InitStructure.NVIC_IRQChannel = RTC_IRQn;
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
@@ -70,6 +81,10 @@ void bsp_InitHardTimer(void)
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE); 
 	
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM5, ENABLE); 
+	
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM6, ENABLE); 
+	
+//	RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1, ENABLE); 
 
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE); 
 	
@@ -155,8 +170,28 @@ void bsp_InitHardTimer(void)
 
 	TIM_ITConfig(TIM5, TIM_IT_CC1, DISABLE);
 	
-	ConfigTimerNVIC();
+//	TIM_TimeBaseStructure.TIM_Period =9;							 //1ms
+//	TIM_TimeBaseStructure.TIM_Prescaler = 7199;
+//	TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+//	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+//	TIM_TimeBaseInit(TIM1, &TIM_TimeBaseStructure);
+//	TIM_ClearFlag(TIM1, TIM_FLAG_Update);
+//	/* TIM IT enable */
+//	TIM_ITConfig(TIM1,TIM_IT_Update, ENABLE);
+//	/* TIM3 enable counter */
+//	TIM_Cmd(TIM1, ENABLE);
+		TIM_TimeBaseStructure.TIM_Period =9;							 //1ms
+	TIM_TimeBaseStructure.TIM_Prescaler = 7199;
+	TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+	TIM_TimeBaseInit(TIM6, &TIM_TimeBaseStructure);
+	TIM_ClearFlag(TIM6, TIM_FLAG_Update);
+	/* TIM IT enable */
+	TIM_ITConfig(TIM6,TIM_IT_Update, ENABLE);
+	/* TIM3 enable counter */
+	TIM_Cmd(TIM6, ENABLE);
 	
+	ConfigTimerNVIC();
 }
 
 /*************************************** END OF FILE *********************************/

@@ -13,13 +13,14 @@
 *
 *********************************************************************************************************
 */
-
 #include "bsp.h"
-
-CJQ_PZ_TYPE cjq_pz,*cjq_pz_ptr;
+#include "bsp_sdi.h"
+#include "bsp_user_lib.h"
 
 char gstrStationID[]  = "A0001";
 char gstrStationDNO[] = "002";	
+
+extern CJQ_PZ_TYPE cjq_pz,*cjq_pz_ptr;
 
 void Initialize_Cjq_Pz(void)
 {
@@ -95,6 +96,8 @@ void bsp_Init(void)
 	bsp_InitRTC();
 	
 	RTC_ReadClock();
+	
+	SDI_PP_Configuration();
 	
 	/* 打印系统开机状态，方便查看系统是否复位 */
 	printf("%04d-%02d-%02d %02d:%02d:%02d System Reset!\r\n",g_tRTC.Year,g_tRTC.Mon,g_tRTC.Day,g_tRTC.Hour,g_tRTC.Min,g_tRTC.Sec);

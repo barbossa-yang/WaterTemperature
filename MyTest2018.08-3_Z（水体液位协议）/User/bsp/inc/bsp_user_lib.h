@@ -63,7 +63,7 @@ uint32_t AsciiToUint32(char *pAscii);
 //¿ØÖÆ
 
 #define RCC_Led_Ctrl 	 RCC_APB2Periph_GPIOG
-#define PORT_Led_Ctrl	 GPIOG
+#define PORT_Led_Ctrl	 GPIOC
 
 #define PIN_Blue_Led	 GPIO_Pin_0
 
