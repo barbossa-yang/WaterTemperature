@@ -419,21 +419,27 @@ __task void AppTaskAtmos(void)
 */
 __task void AppTaskWaterTemp(void)
 {
+	while(1)
+	{
 		RTC_ReadClock();
-		Sdi_12_Transmission("0I!",1, 1);
-		os_dly_wait(500);
+		printf("date send \r\n");
+//		Sdi_12_Transmission("0I!",1, 1);
+		printf("date send over\r\n");
+		os_dly_wait(1000);
 //		Sdi_12_Transmission("0R0!",1, 1);
 //		os_dly_wait(500);
 	
 	
-		Sdi_12_Transmission("0R0!",1, 1);
+//		Sdi_12_Transmission("0R0!",1, 1);
 //		if((g_tRTC.hour >= g_ndviTimeBegin)&&(g_tRTC.hour < g_ndviTimeEnd)&&
 //		(g_tRTC.second == 0)&&(g_tRTC.minute%g_ndviInterval == 0))
 //		{
 //				GetNdviOriginalData();
 //				IWDG_ReloadCounter();
 //		}
-		os_dly_wait(500);
+//		os_dly_wait(500);
+		os_evt_set(IWDG_BIT_9, HandleTaskWdg);
+	}
 }
 
 

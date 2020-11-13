@@ -79,11 +79,12 @@
 #define IWDG_BIT_7	 (1 << 7)
 
 #define IWDG_BIT_8	 (1 << 8)
+#define IWDG_BIT_9	 (1 << 9)
 
 #if SEA_TIDE == 1
-#define IWDG_BIT_ALL (IWDG_BIT_0 | IWDG_BIT_1 | IWDG_BIT_2 | IWDG_BIT_3 | IWDG_BIT_4 | IWDG_BIT_5 | IWDG_BIT_6 | IWDG_BIT_7 | IWDG_BIT_8)
+#define IWDG_BIT_ALL (IWDG_BIT_0 | IWDG_BIT_1 | IWDG_BIT_2 | IWDG_BIT_3 | IWDG_BIT_4 | IWDG_BIT_5 | IWDG_BIT_6 | IWDG_BIT_7 | IWDG_BIT_8 | IWDG_BIT_9)
 #else
-#define IWDG_BIT_ALL (IWDG_BIT_1 | IWDG_BIT_8)
+#define IWDG_BIT_ALL (IWDG_BIT_1 | IWDG_BIT_8 | IWDG_BIT_9)
 #endif
 
 #define UART_BIT_0	 (1 << 0)

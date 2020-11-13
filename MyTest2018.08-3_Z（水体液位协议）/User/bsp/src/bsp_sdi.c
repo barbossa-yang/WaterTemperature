@@ -20,6 +20,7 @@ TIMER7:解析接收数据使用
 /* Includes ------------------------------------------------------------------*/
 #include <math.h>
 #include "bsp_sdi.h"
+#include "RTL.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -66,7 +67,7 @@ void SDI_PP_Configuration(void)
     EXTI_InitStructure.EXTI_Line = EXTI_Line5;
     EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
     EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising_Falling;
-    EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+    EXTI_InitStructure.EXTI_LineCmd = DISABLE;
     EXTI_Init(&EXTI_InitStructure);
 		
 }
@@ -425,8 +426,8 @@ bool Sdi_12_Transmission(const char *cmd,u8 tt,u8 channel)
 	volatile u16  i,j,num,k,cnt,data;
 	u16 level,temp;
 	u8 SendTimes = tt-1;
-	u8 outer_loop_ctrl = 3;
-	u8 inner_loop_ctrl = 3;	
+	u8 outer_loop_ctrl = 2;
+	u8 inner_loop_ctrl = 2;	
 	
 	if(global_elapsed_timer > 87 || first_times_flag)  
 	{
@@ -449,7 +450,7 @@ Inner_Ctrl:
 	Send_Command(cmd,channel);	//transmit the address,the command,& !	
 	if(SendTimes != 0)
 	{
-		delay_ms(66);
+		os_dly_wait(66);
 		SendTimes = 0;
 		goto Inner_Ctrl; 
 	}
@@ -473,11 +474,10 @@ Inner_Ctrl:
 			global_timeout_flag = TRUE;
 			break; 
 		}
-
 //		IWDG_ReloadCounter();
 	}
 
-	delay_ms(200);
+	os_dly_wait(200);
 
 	Disable_SdiLine_Int();
 
