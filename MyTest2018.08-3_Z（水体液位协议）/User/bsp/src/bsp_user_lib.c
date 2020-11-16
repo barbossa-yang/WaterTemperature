@@ -668,7 +668,7 @@ void TIM3_IRQHandler(void)
 }
 
 /*******************************************************************************
-* Function Name  : TIM6_IRQHandler
+* Function Name  : TIM1_UP_IRQHandler
 * Description    : This function handles TIM6 global interrupt request.
 * Input          : None
 * Output         : None
@@ -676,17 +676,21 @@ void TIM3_IRQHandler(void)
 *******************************************************************************/
 //void TIM1_UP_IRQHandler(void)
 //{
+//	u16 delay833us, delay20ms;
 //	if (TIM_GetITStatus(TIM1, TIM_IT_Update) != RESET)
 //	{
-//		global_retry_timer++;		
-// 		global_elapsed_timer++;		
-//		global_break_timer++;
-//		global_marking_timer++;		
-//		global_maximum_timer++;
-//		global_timeout_timer++; 
+//		callback();
 //		TIM_ClearITPendingBit(TIM1, TIM_IT_Update);
 //	}
 //}
+
+/*******************************************************************************
+* Function Name  : TIM6_IRQHandler
+* Description    : This function handles TIM6 global interrupt request.
+* Input          : None
+* Output         : None
+* Return         : None
+*******************************************************************************/
 void TIM6_IRQHandler(void)
 {
 	if (TIM_GetITStatus(TIM6, TIM_IT_Update) != RESET)

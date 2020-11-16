@@ -417,28 +417,93 @@ __task void AppTaskAtmos(void)
 *   ”≈ œ» º∂: 8  
 *********************************************************************************************************
 */
+extern u8 response_data[RECEIVE_DATA_LEN];
 __task void AppTaskWaterTemp(void)
 {
 	while(1)
 	{
 		RTC_ReadClock();
-		printf("date send \r\n");
-//		Sdi_12_Transmission("0I!",1, 1);
-		printf("date send over\r\n");
-		os_dly_wait(1000);
-//		Sdi_12_Transmission("0R0!",1, 1);
-//		os_dly_wait(500);
+
+//		Sdi_12_Transmission("1I!",1, 1);
+//		printf("%s", response_data);
+		Sdi_12_Transmission("1R0!",1, 1);
+		for(int i = 0 ; i < RECEIVE_DATA_LEN; i++)
+		{
+			printf("%d ", response_data[i]);
+			
+			if(i == RECEIVE_DATA_LEN -1)
+			{
+				printf("\r\n");
+			}
+		}
+		
+//		Sdi_12_Transmission("2R0!",1, 1);
+//		for(int i = 0 ; i < RECEIVE_DATA_LEN; i++)
+//		{
+//			printf("%d ", response_data[i]);
+//			
+//			if(i == RECEIVE_DATA_LEN -1)
+//			{
+//				printf("\r\n");
+//			}
+//		}
+//		
+//		Sdi_12_Transmission("3R0!",1, 1);
+//		for(int i = 0 ; i < RECEIVE_DATA_LEN; i++)
+//		{
+//			printf("%d ", response_data[i]);
+//			
+//			if(i == RECEIVE_DATA_LEN -1)
+//			{
+//				printf("\r\n");
+//			}
+//		}
+//		
+//		Sdi_12_Transmission("4R0!",1, 1);
+//		for(int i = 0 ; i < RECEIVE_DATA_LEN; i++)
+//		{
+//			printf("%d ", response_data[i]);
+//			
+//			if(i == RECEIVE_DATA_LEN -1)
+//			{
+//				printf("\r\n");
+//			}
+//		}
+//		
+//		Sdi_12_Transmission("5R0!",1, 1);
+//		for(int i = 0 ; i < RECEIVE_DATA_LEN; i++)
+//		{
+//			printf("%d ", response_data[i]);
+//			
+//			if(i == RECEIVE_DATA_LEN -1)
+//			{
+//				printf("\r\n");
+//			}
+//		}
+//		
+//		Sdi_12_Transmission("6R0!",1, 1);
+//		for(int i = 0 ; i < RECEIVE_DATA_LEN; i++)
+//		{
+//			printf("%d ", response_data[i]);
+//			
+//			if(i == RECEIVE_DATA_LEN -1)
+//			{
+//				printf("\r\n");
+//			}
+//		}
+		
+		os_evt_set(IWDG_BIT_9, HandleTaskWdg);
+		os_dly_wait(500);
+
 	
-	
-//		Sdi_12_Transmission("0R0!",1, 1);
 //		if((g_tRTC.hour >= g_ndviTimeBegin)&&(g_tRTC.hour < g_ndviTimeEnd)&&
 //		(g_tRTC.second == 0)&&(g_tRTC.minute%g_ndviInterval == 0))
 //		{
 //				GetNdviOriginalData();
 //				IWDG_ReloadCounter();
 //		}
-//		os_dly_wait(500);
-		os_evt_set(IWDG_BIT_9, HandleTaskWdg);
+
+		
 	}
 }
 

@@ -47,22 +47,23 @@ static void ConfigTimerNVIC(void)
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure);	
 
-//		NVIC_InitStructure.NVIC_IRQChannel = TIM1_UP_IRQn;	
-//    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2;
-//    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
-//    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-//    NVIC_Init(&NVIC_InitStructure);	
+		NVIC_InitStructure.NVIC_IRQChannel = TIM1_UP_IRQn;	
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure);	
+
 		NVIC_InitStructure.NVIC_IRQChannel = TIM6_IRQn;	
     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2;
     NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
     NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
     NVIC_Init(&NVIC_InitStructure);	
 		
-	NVIC_InitStructure.NVIC_IRQChannel = RTC_IRQn;
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
-	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-	NVIC_Init(&NVIC_InitStructure);	
+		NVIC_InitStructure.NVIC_IRQChannel = RTC_IRQn;
+		NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
+		NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+		NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+		NVIC_Init(&NVIC_InitStructure);	
 	
 }
 
@@ -170,17 +171,18 @@ void bsp_InitHardTimer(void)
 
 	TIM_ITConfig(TIM5, TIM_IT_CC1, DISABLE);
 	
-//	TIM_TimeBaseStructure.TIM_Period =9;							 //1ms
-//	TIM_TimeBaseStructure.TIM_Prescaler = 7199;
+//	TIM_TimeBaseStructure.TIM_Period =8;							 //1us
+//	TIM_TimeBaseStructure.TIM_Prescaler = 7;
 //	TIM_TimeBaseStructure.TIM_ClockDivision = 0;
 //	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
-//	TIM_TimeBaseInit(TIM1, &TIM_TimeBaseStructure);
-//	TIM_ClearFlag(TIM1, TIM_FLAG_Update);
+//	TIM_TimeBaseInit(TIM7, &TIM_TimeBaseStructure);
+//	TIM_ClearFlag(TIM7, TIM_FLAG_Update);
 //	/* TIM IT enable */
-//	TIM_ITConfig(TIM1,TIM_IT_Update, ENABLE);
+//	TIM_ITConfig(TIM7,TIM_IT_Update, ENABLE);
 //	/* TIM3 enable counter */
-//	TIM_Cmd(TIM1, ENABLE);
-		TIM_TimeBaseStructure.TIM_Period =9;							 //1ms
+//	TIM_Cmd(TIM7, ENABLE);
+
+	TIM_TimeBaseStructure.TIM_Period =9;							 //1ms
 	TIM_TimeBaseStructure.TIM_Prescaler = 7199;
 	TIM_TimeBaseStructure.TIM_ClockDivision = 0;
 	TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;

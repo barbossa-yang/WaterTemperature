@@ -67,7 +67,7 @@ void SDI_PP_Configuration(void)
     EXTI_InitStructure.EXTI_Line = EXTI_Line5;
     EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
     EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising_Falling;
-    EXTI_InitStructure.EXTI_LineCmd = DISABLE;
+    EXTI_InitStructure.EXTI_LineCmd = ENABLE;
     EXTI_Init(&EXTI_InitStructure);
 		
 }
@@ -96,6 +96,8 @@ void Disable_SdiLine_Int(void)
 
 void Timeout_Timer_Config(u16 p) 
 {  
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM7, ENABLE);
+	
 	TIM7->ARR = p; 		     
 	
 	TIM7->PSC = 71;//9; 	    
@@ -180,6 +182,17 @@ void delay_ms(int cnt)
 	}
 }
 
+void delay_833us()
+{
+	int i, cnt = 1;
+	while(cnt--)
+	{
+	   for(i=0;i<6600;i++);
+	}
+}
+
+
+
 void Set_DQIO_In(void)
 {
 		GPIO_InitTypeDef GPIO_InitStructure;
@@ -231,8 +244,8 @@ void ow_writebyte1(u8 tt,u8 channel)
 		default:
 			break;
 	}
-	
-	delay_1us(833);		// while(!sdi_1200bps_flag);sdi_1200bps_flag = false;
+	delay_833us();
+//	delay_1us(833);		// while(!sdi_1200bps_flag);sdi_1200bps_flag = false;
 
 	for(i=0;i<8;i++)
 	{
@@ -289,8 +302,8 @@ void ow_writebyte1(u8 tt,u8 channel)
 			}
 		}
 			
-
-		delay_1us(833); // while(!sdi_1200bps_flag);sdi_1200bps_flag = false;
+		delay_833us();
+//		delay_1us(833); // while(!sdi_1200bps_flag);sdi_1200bps_flag = false;
 		  
 		data >>= 1;        
 	}
@@ -318,7 +331,8 @@ void ow_writebyte1(u8 tt,u8 channel)
 		default:
 			break;
 	}
-	delay_1us(833);		// while(!sdi_1200bps_flag);sdi_1200bps_flag = false;
+	delay_833us();
+//	delay_1us(833);		// while(!sdi_1200bps_flag);sdi_1200bps_flag = false;
 
 }
 
@@ -330,7 +344,6 @@ void Send_Command(const char *p,u8 channel)
 	while( (tt = p[i++])!='\0' ) 
 	{
 		ow_writebyte1(tt, channel);
-//		IWDG_ReloadCounter();
 	}
 }
 
@@ -426,8 +439,8 @@ bool Sdi_12_Transmission(const char *cmd,u8 tt,u8 channel)
 	volatile u16  i,j,num,k,cnt,data;
 	u16 level,temp;
 	u8 SendTimes = tt-1;
-	u8 outer_loop_ctrl = 2;
-	u8 inner_loop_ctrl = 2;	
+	u8 outer_loop_ctrl = 1;
+	u8 inner_loop_ctrl = 1;	
 	
 	if(global_elapsed_timer > 87 || first_times_flag)  
 	{
@@ -464,7 +477,7 @@ Inner_Ctrl:
 	CountNum = 0x00;
 	receive_data = 0x00;	
 	Timeout_Timer_Config(65530);
-	delay_1us(500);		
+	delay_833us();		
 	Enable_SdiLine_Int(); 
 
 	while(!start_bit_flag)
@@ -480,7 +493,7 @@ Inner_Ctrl:
 	os_dly_wait(200);
 
 	Disable_SdiLine_Int();
-
+	
 	if(start_bit_flag)
 	{
 		u8 temp_value[10] = {0};
