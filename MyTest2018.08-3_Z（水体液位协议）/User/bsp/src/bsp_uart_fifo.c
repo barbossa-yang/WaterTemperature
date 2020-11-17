@@ -35,13 +35,26 @@ int _sys_exit(int x)
 	return x = x; 
 } 
 //重定义fputc函数 
+//int fputc(int ch, FILE *f)
+//{      
+//	while((USART1->SR&0X40)==0); //循环发送,直到发送完毕   
+//    USART1->DR = (u8) ch;      
+//	return ch;
+//}
+
 int fputc(int ch, FILE *f)
-{      
-	while((USART1->SR&0X40)==0); //循环发送,直到发送完毕   
-    USART1->DR = (u8) ch;      
-	return ch;
+{
+		/* 发送一个字节数据到USART1 */
+		USART_SendData(USART1, (uint8_t) ch);
+		
+		/* 等待发送完毕 */
+		while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET);		
+	
+		return (ch);
 }
 #endif 
+
+
 
 #if UART1_FIFO_EN == 1
 	static UART_T g_tUart1;

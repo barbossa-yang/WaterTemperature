@@ -516,7 +516,7 @@ Inner_Ctrl:
 					{
 						temp_value[i++] = 0x00; 
 					}
-					if(i == 10)
+					if(i == 11)
 					{
 					  data = 0x00;
 						for(k=8;k>=1;k--)
@@ -536,7 +536,7 @@ Inner_Ctrl:
 						data = data & 0x7f;	
 						receive_data = data;
 						response_data[cnt++] = receive_data;
-						if(data == 0x0D) 
+						if(data == 0x0d) 
 						{	
 								Disable_SdiLine_Int();
 								i = 0;

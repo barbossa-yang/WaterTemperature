@@ -105,7 +105,7 @@ OS_TID HandleTaskGauge = NULL;
 /*******************************************************************************/
 
 __task void AppTaskWaterTemp(void);
-static uint64_t AppTaskWaterTempStk[256];
+static uint64_t AppTaskWaterTempStk[512];
 OS_TID HandleTaskWaterTemp = NULL;
 
 
@@ -176,7 +176,7 @@ __task void AppTaskMsgPro(void)
 {
     while(1)
     {
-		Process_Host_Message();		
+			Process_Host_Message();		
     }
 }
 
@@ -423,87 +423,36 @@ __task void AppTaskWaterTemp(void)
 	while(1)
 	{
 		RTC_ReadClock();
-
-//		Sdi_12_Transmission("1I!",1, 1);
-//		printf("%s", response_data);
-		Sdi_12_Transmission("1R0!",1, 1);
-		for(int i = 0 ; i < RECEIVE_DATA_LEN; i++)
+		
+		if((g_tRTC.Sec == 0)&&(g_tRTC.Min%10 == 0))
 		{
-			printf("%d ", response_data[i]);
-			
-			if(i == RECEIVE_DATA_LEN -1)
-			{
-				printf("\r\n");
-			}
+			Sdi_12_Transmission("1R0!",1, 1);
+			printf("%s", response_data);
+			memset(response_data, 0, RECEIVE_DATA_LEN);
+
+			Sdi_12_Transmission("2R0!",1, 1);
+			printf("%s", response_data);
+			memset(response_data, 0, RECEIVE_DATA_LEN);
+
+			Sdi_12_Transmission("3R0!",1, 1);
+			printf("%s", response_data);
+			memset(response_data, 0, RECEIVE_DATA_LEN);
+
+			Sdi_12_Transmission("4R0!",1, 1);
+			printf("%s", response_data);
+			memset(response_data, 0, RECEIVE_DATA_LEN);
+
+			Sdi_12_Transmission("5R0!",1, 1);
+			printf("%s", response_data);
+			memset(response_data, 0, RECEIVE_DATA_LEN);
+
+			Sdi_12_Transmission("6R0!",1, 1);
+			printf("%s", response_data);
+			memset(response_data, 0, RECEIVE_DATA_LEN);
 		}
 		
-//		Sdi_12_Transmission("2R0!",1, 1);
-//		for(int i = 0 ; i < RECEIVE_DATA_LEN; i++)
-//		{
-//			printf("%d ", response_data[i]);
-//			
-//			if(i == RECEIVE_DATA_LEN -1)
-//			{
-//				printf("\r\n");
-//			}
-//		}
-//		
-//		Sdi_12_Transmission("3R0!",1, 1);
-//		for(int i = 0 ; i < RECEIVE_DATA_LEN; i++)
-//		{
-//			printf("%d ", response_data[i]);
-//			
-//			if(i == RECEIVE_DATA_LEN -1)
-//			{
-//				printf("\r\n");
-//			}
-//		}
-//		
-//		Sdi_12_Transmission("4R0!",1, 1);
-//		for(int i = 0 ; i < RECEIVE_DATA_LEN; i++)
-//		{
-//			printf("%d ", response_data[i]);
-//			
-//			if(i == RECEIVE_DATA_LEN -1)
-//			{
-//				printf("\r\n");
-//			}
-//		}
-//		
-//		Sdi_12_Transmission("5R0!",1, 1);
-//		for(int i = 0 ; i < RECEIVE_DATA_LEN; i++)
-//		{
-//			printf("%d ", response_data[i]);
-//			
-//			if(i == RECEIVE_DATA_LEN -1)
-//			{
-//				printf("\r\n");
-//			}
-//		}
-//		
-//		Sdi_12_Transmission("6R0!",1, 1);
-//		for(int i = 0 ; i < RECEIVE_DATA_LEN; i++)
-//		{
-//			printf("%d ", response_data[i]);
-//			
-//			if(i == RECEIVE_DATA_LEN -1)
-//			{
-//				printf("\r\n");
-//			}
-//		}
-		
 		os_evt_set(IWDG_BIT_9, HandleTaskWdg);
-		os_dly_wait(500);
-
-	
-//		if((g_tRTC.hour >= g_ndviTimeBegin)&&(g_tRTC.hour < g_ndviTimeEnd)&&
-//		(g_tRTC.second == 0)&&(g_tRTC.minute%g_ndviInterval == 0))
-//		{
-//				GetNdviOriginalData();
-//				IWDG_ReloadCounter();
-//		}
-
-		
+		os_dly_wait(100);
 	}
 }
 
